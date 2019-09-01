@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Provider as ReduxProvider } from 'react-redux';
+import { Link } from 'react-router-dom';
 import configureStore from './store';
 
 const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
@@ -11,9 +11,7 @@ function App() {
     <ReduxProvider store={reduxStore}>
       <div className="App">
         <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+          <Link to="/login">Login</Link>
         </header>
       </div>
     </ReduxProvider>

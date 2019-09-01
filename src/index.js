@@ -1,19 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
 import './index.css';
 import App from './App';
-import Login from './Login';
+import Login from './scenes/login';
+import AppletList from './scenes/appletList';
 import * as serviceWorker from './serviceWorker';
+import configureStore from './store';
+
+const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 const routing = (
-  <Router>
-    <div>
-      <Route path="/login" component={Login} />
-      <Route path="/applets" component={Login} />
-      <Route path="/" component={App} />
-    </div>
-  </Router>
+  <ReduxProvider store={reduxStore}>
+    <Router>
+      <div>
+        <Route path="/login" component={Login} />
+        <Route path="/applets" component={AppletList} />
+        <Route path="/" component={Login} />
+      </div>
+    </Router>
+  </ReduxProvider>
+  
 )
 
 ReactDOM.render(routing, document.getElementById('root'))
