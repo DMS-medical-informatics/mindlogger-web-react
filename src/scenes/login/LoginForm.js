@@ -2,6 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../../state/user/user.actions'
 import api from '../../services/api';
@@ -15,7 +16,8 @@ class LoginForm extends React.Component {
     this.state = {
       user: '',
       pass: '',
-      isLoading: false
+      isLoading: false,
+      signInSuccessful: false
     };
   }
   onChangeUser = (e) => {
@@ -33,13 +35,16 @@ class LoginForm extends React.Component {
         password: this.state.pass }).then((resp) => {
         console.log(resp);
         setUser(this.state.user);
-        this.setState({isLoading: false});
+        this.setState({signInSuccessful: true})
      }).catch((err) => {
         console.log(err);
         this.setState({isLoading: false});
     });
   }
   render() {
+    if (this.state.signInSuccessful) {
+      return <Redirect to="/applets"/>
+    }
     return (
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="formGroupUser" onChange={this.onChangeUser}>
@@ -51,7 +56,7 @@ class LoginForm extends React.Component {
         {(this.state.isLoading ? (
           <Spinner animation="border" variant="primary" />
         ) : (
-          <Button type="submit">Submit form</Button>
+          <Button type="submit">Login</Button>
         ))}
       </Form>
     );
