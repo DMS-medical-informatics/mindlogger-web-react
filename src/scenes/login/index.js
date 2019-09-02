@@ -1,17 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import LoginForm from './LoginForm';
 
 
-function App() {
+const Login = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Link to="/applets">
-          Login
-        </Link>
+        <LoginForm/>
       </header>
     </div>
   );
 }
 
-export default App;
+export default Login;

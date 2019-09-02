@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import './index.css';
-import App from './App';
+import './App.css';
 import Login from './scenes/login';
 import AppletList from './scenes/appletList';
 import * as serviceWorker from './serviceWorker';
@@ -13,6 +15,13 @@ const reduxStore = configureStore(window.REDUX_INITIAL_DATA);
 
 const routing = (
   <ReduxProvider store={reduxStore}>
+    <Navbar bg="primary" variant="dark">
+      <Navbar.Brand href="#home">MindLogger</Navbar.Brand>
+      <Nav className="mr-auto">
+        <Nav.Link href="/">Home</Nav.Link>
+        <Nav.Link href="/login">Log Out</Nav.Link>
+      </Nav>
+    </Navbar>
     <Router>
       <div>
         <Route path="/login" component={Login} />
@@ -21,7 +30,6 @@ const routing = (
       </div>
     </Router>
   </ReduxProvider>
-  
 )
 
 ReactDOM.render(routing, document.getElementById('root'))
