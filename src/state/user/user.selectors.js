@@ -4,6 +4,6 @@ export const authSelector = R.path(['user', 'auth']);
 
 export const authTokenSelector = R.path(['user', 'auth', 'token']);
 
-export const userInfoSelector = R.path(['user', 'info']);
+export const userSelector = R.path(['user', 'user']);
 
 export const loggedInSelector = R.pathOr(false, ['user', 'auth', 'token']);

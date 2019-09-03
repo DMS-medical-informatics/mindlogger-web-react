@@ -47,16 +47,18 @@ class LoginForm extends React.Component {
     }
     return (
       <Form onSubmit={this.onSubmit}>
-        <Form.Group controlId="formGroupUser" onChange={this.onChangeUser}>
-          <Form.Control type="user" placeholder="Enter Username" />
-        </Form.Group>
-        <Form.Group controlId="formGroupPassword">
-          <Form.Control type="password" placeholder="Password" onChange={this.onChangePass}/>
-        </Form.Group>
         {(this.state.isLoading ? (
           <Spinner animation="border" variant="primary" />
         ) : (
-          <Button type="submit">Login</Button>
+          <React.Fragment>
+            <Form.Group controlId="formGroupUser" onChange={this.onChangeUser}>
+              <Form.Control type="user" placeholder="Enter Username" />
+            </Form.Group>
+            <Form.Group controlId="formGroupPassword">
+              <Form.Control type="password" placeholder="Password" onChange={this.onChangePass}/>
+            </Form.Group>
+            <Button type="submit">Login</Button>
+          </React.Fragment>
         ))}
       </Form>
     );
