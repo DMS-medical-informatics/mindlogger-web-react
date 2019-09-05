@@ -1,17 +1,15 @@
 import React from 'react';
+import AppletListItem from '../../components/AppletListItem';
 import { Link } from 'react-router-dom';
 
-
-function App() {
+function Applets() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Link to="/applets">
-          Here are your applets
+    <div class="Item-list">
+        <Link to="/activities" class="List-item-container">
+          <AppletListItem/>
         </Link>
-      </header>
     </div>
   );
 }
 
-export default App;
+export default Applets;
