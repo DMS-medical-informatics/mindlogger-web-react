@@ -3,7 +3,6 @@ import USER_CONSTANTS from './user.constants';
 export const initialState = {
   user: null,
   auth: null,
-  info: null,
 };
 
 export default (state = initialState, action = {}) => {
@@ -20,11 +19,11 @@ export default (state = initialState, action = {}) => {
         ...state,
         auth: action.payload,
       };
-    case USER_CONSTANTS.SET_INFO:
+    case USER_CONSTANTS.SET_APPLETS:
       return {
         ...state,
-        info: action.payload,
-      };
+        applets: action.payload,
+      }
     default:
       return state;
   }

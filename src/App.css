@@ -20,10 +20,11 @@
 .Item-list {
   min-height: 100vh;
   width: 100%;
+  padding-top: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: white;
 }
 
@@ -36,7 +37,7 @@
 }
 
 .List-item {
-  width: 90%;
+  width: 94%;
   align-self: center;
   margin: 6px;
 }

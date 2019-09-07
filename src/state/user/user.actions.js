@@ -5,14 +5,14 @@ export const setUser = user => ({
   payload: user,
 });
 
-export const setInfo = info => ({
-  type: USER_CONSTANTS.SET_INFO,
-  payload: info,
-});
-
 export const setAuth = auth => ({
   type: USER_CONSTANTS.SET_AUTH,
   payload: auth,
+});
+
+export const setApplets = applets => ({
+  type: USER_CONSTANTS.SET_APPLETS,
+  payload: applets,
 });
 
 export const clearUser = () => ({

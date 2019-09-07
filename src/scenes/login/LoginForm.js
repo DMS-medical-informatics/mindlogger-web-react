@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser } from '../../state/user/user.actions'
+import { setUser, setAuth } from '../../state/user/user.actions'
 import api from '../../services/api';
 import config from '../../config';
 
@@ -27,18 +27,19 @@ class LoginForm extends React.Component {
     this.setState({pass: e.target.value})
   }
   onSubmit = (e) => {
-    const { setUser } = this.props;
-     e.preventDefault();
-     this.setState({isLoading: true})
-     api.signIn({ apiHost: config.defaultApiHost,
-        user: this.state.user,
-        password: this.state.pass }).then((resp) => {
-        console.log(resp);
-        setUser(this.state.user);
-        this.setState({signInSuccessful: true})
-     }).catch((err) => {
-        console.log(err);
-        this.setState({isLoading: false});
+    const { setUser, setAuth } = this.props;
+    e.preventDefault();
+    this.setState({isLoading: true})
+    api.signIn({ apiHost: config.defaultApiHost,
+      user: this.state.user,
+      password: this.state.pass
+    }).then((resp) => {
+      setUser(resp.data.user);
+      setAuth(resp.data.authToken.token);
+      this.setState({ signInSuccessful: true });
+    }).catch((err) => {
+      console.log(err);
+      this.setState({isLoading: false});
     });
   }
   render() {
@@ -67,6 +68,7 @@ class LoginForm extends React.Component {
 
 const mapDispatchToProps = {
   setUser,
+  setAuth
 };
 
 export default connect(null, mapDispatchToProps)(LoginForm);
