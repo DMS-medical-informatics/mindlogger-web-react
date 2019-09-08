@@ -2,20 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ActivityListItem from '../../components/ActivityListItem';
-import { appletSelector } from '../../state/user/user.selectors';
+import { currentAppletSelector } from '../../state/app/app.selectors';
 
-const Activities = ({ applets }) => {
+const Activities = ({ applet }) => {
+  const activities = Object.values(applet.activities).map((item, index) => (
+    <ActivityListItem key={index} title={item["schema:description"]} />
+  ));
+
   return (
     <div className="Item-list">
-        <Link to="/applets" className="List-item-container">
-          <ActivityListItem/>
-        </Link>
+        <div className="List-item-container">
+          {activities}
+        </div>
     </div>
   );
 }
 
 const mapStateToProps = state => ({
-  applets: appletSelector(state),
+  applet: currentAppletSelector(state),
 });
 
 export default connect(mapStateToProps, null)(Activities);
