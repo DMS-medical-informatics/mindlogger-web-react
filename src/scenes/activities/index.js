@@ -1,12 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ActivityListItem from '../../components/ActivityListItem';
+import { appletSelector } from '../../state/user/user.selectors';
 
-
-
-function Activities() {
+const Activities = ({ applets }) => {
   return (
-    <div class="Item-list">
+    <div className="Item-list">
         <Link to="/applets" className="List-item-container">
           <ActivityListItem/>
         </Link>
@@ -14,4 +14,8 @@ function Activities() {
   );
 }
 
-export default Activities;
+const mapStateToProps = state => ({
+  applets: appletSelector(state),
+});
+
+export default connect(mapStateToProps, null)(Activities);

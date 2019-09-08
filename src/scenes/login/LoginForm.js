@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser, setAuth } from '../../state/user/user.actions'
+import { setUser, setAuth } from '../../state/user/user.actions';
+import { setApplets } from '../../state/user/user.actions';
 import api from '../../services/api';
 import config from '../../config';
 
@@ -27,13 +28,24 @@ class LoginForm extends React.Component {
     this.setState({pass: e.target.value})
   }
   onSubmit = (e) => {
-    const { setUser, setAuth } = this.props;
+    const { setUser, setAuth, setApplets } = this.props;
     e.preventDefault();
     this.setState({isLoading: true})
     api.signIn({ apiHost: config.defaultApiHost,
       user: this.state.user,
       password: this.state.pass
     }).then((resp) => {
+      api.getAppletsForUser({
+        apiHost: config.defaultApiHost,
+        token: resp.data.authToken.token,
+        user: resp.data.user._id,
+        role: 'user'
+      }).then((resp) => {
+        console.log(resp);
+        setApplets(resp.data)
+      }).catch((resp) => {
+        console.log(resp);
+      })
       setUser(resp.data.user);
       setAuth(resp.data.authToken.token);
       this.setState({ signInSuccessful: true });
@@ -68,7 +80,8 @@ class LoginForm extends React.Component {
 
 const mapDispatchToProps = {
   setUser,
-  setAuth
+  setAuth,
+  setApplets,
 };
 
 export default connect(null, mapDispatchToProps)(LoginForm);

@@ -8,4 +8,4 @@ export const userSelector = R.path(['user', 'user']);
 
 export const loggedInSelector = R.pathOr(false, ['user', 'auth', 'token']);
 
-export const appletSelector = R.path(['applets']);
+export const appletSelector = R.path(['user', 'applets']);

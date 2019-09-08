@@ -1,14 +1,11 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-const Item = () => {
+const Item = (props) => {
   return (
     <Card text="primary" className="List-item">
       <Card.Body>
-        <Card.Title>Example Applet</Card.Title>
-        <Card.Text>
-          A short applet description
-        </Card.Text>
+        <Card.Title>{props.name}</Card.Title>
       </Card.Body>
     </Card>
   )
