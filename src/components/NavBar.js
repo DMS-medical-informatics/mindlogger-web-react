@@ -9,16 +9,16 @@ const NavBar = ({ user, clearUser }) => {
   const isLoggedIn = (user && user !== '');
   if (isLoggedIn) {
     return (
-      <Navbar bg="primary" variant="dark"fixed="top">
+      <Navbar bg="primary" variant="dark" fixed="top" className="NavBar">
         <Navbar.Brand href="/">MindLogger</Navbar.Brand>
-        <Nav className="mr-auto">
+        <Nav className="justify-content-end">
           <Nav.Link onClick={clearUser} >Log Out</Nav.Link>
         </Nav>
       </Navbar>
     );
   } else {
     return (
-      <Navbar bg="primary" variant="dark" fixed="top">
+      <Navbar bg="primary" variant="dark" fixed="top" className="NavBar">
         <Navbar.Brand href="/">MindLogger</Navbar.Brand>
         <Nav className="mr-auto">
         </Nav>
